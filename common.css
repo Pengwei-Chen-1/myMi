@@ -1,0 +1,99 @@
+﻿@charset "utf-8";
+body{
+	font: 12px "microsoft yahei";
+	color:#72747E;
+	padding:0px;
+	margin:0px;
+}
+ul,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd {
+    margin:0px;
+    padding:0px;
+    border:none;
+    list-style:none;
+}
+input {border:none;}
+.lf   {float:left;}
+.rt  {float:right;}
+.clear  {clear:both;}
+/*****************整体布局*****************/
+#top_box,#nav,#banner,#main,#foot_box,#footer{
+	width:1248px;
+	margin:0 auto;
+}
+#top{
+	width:100%;
+	height:40px;
+	line-height:40px;
+	background:#313131;
+	border-bottom:1px solid #242424;	
+}
+#top_box{
+	height:40px;
+}
+#nav{
+	height:100px;
+	padding:20px 0;
+}
+a{
+	color:#B0B0B0;
+	text-decoration:none;
+}
+/****************页面顶部top***************/
+#top_box ul li{
+	float:left;
+}
+#top_box a{
+	margin-right:10px;
+}
+#top_box ul li a:hover{
+	color:#fff;
+}
+#top_box b{
+	height:10px;
+	border-left:1px solid #424242;
+	padding:0 10px 0 0; 
+}
+#top_rt{
+	float:right;
+	height:40px;
+}
+#top_rt .shop{
+	display:inline-block;
+	width:80px;
+	background:url(Image/shop.jpg) no-repeat 10px #424242;
+	height:41px;
+	line-height:40px;
+	padding-left:40px;
+}
+#top_rt .shop:hover{
+	background:url(Image/shop_hover.jpg) no-repeat 10px #fff;
+	color:#FF6700;
+}
+/************************导航nav***********************/
+#nav_center{
+	float:left;
+	margin-left:190px;
+}
+#nav_center ul li{
+	float:left;
+	height:55px;
+	line-height:55px;
+	margin:0 10px;	
+}
+#nav_center ul li a{
+	display:inline-block;
+	color:#333333;
+	font-size:16px;
+}
+#nav_center ul li a:hover{
+	color:#FF6700;
+}
+
+
+
+
+
+
+
+
+
