@@ -1,0 +1,43 @@
+SET NAMES UTF8;
+DROP DATABASE IF EXISTS bbs;
+CREATE DATABASE bbs CHARSET=UTF8;
+USE bbs;
+
+CREATE TABLE bbs_user(
+	uid INT PRIMARY KEY  AUTO_INCREMENT,
+	uname VARCHAR(10),
+	upwd VARCHAR(10),
+	sex VARCHAR(2),
+	email VARCHAR(20),
+	headPic VARCHAR(20)
+);
+INSERT INTO bbs_user VALUES( 
+	NULL,
+	'张三',
+	'12345678',
+	'男',
+	'12345678@qq.com',
+	'img/1.jpg'
+);
+INSERT INTO bbs_user VALUES(
+	NULL,
+	'李四',
+	'23456789',
+	'男',
+	'23456789@qq.com',
+	'img/2.jpg'
+);
+INSERT INTO bbs_user VALUES(
+	NULL,
+	'王五',
+	'12345679',
+	'男',
+	'12345679@qq.com',
+	'img/3.jpg'
+);
+CREATE TABLE bbs_comment(
+	uid INT PRIMARY KEY  AUTO_INCREMENT,
+	content VARCHAR(100),
+	pubTime DATE,
+	userID VARCHAR(10)
+);
