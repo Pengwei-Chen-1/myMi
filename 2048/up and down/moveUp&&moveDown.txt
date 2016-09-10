@@ -1,0 +1,52 @@
+moveUp:function(){
+    //调用move:传入匿名函数:
+      //遍历data中每一列
+        //调用moveUpInCol上移第c列
+    //并为匿名函数提前绑定this
+},
+moveUpInCol:function(c){
+    //遍历每一行,到r<RN-1结束
+      //查找r位置下方下一个不为0的位置nextr
+      //如果没找到,就退出循环
+      //否则  
+        //如果r位置的值为0
+          //将nextr位置的值赋值给r位置
+          //将nextr位置置为0
+          //r留在原地
+        //否则，如果r位置的值等于nextr位置的值
+          //将r位置的值*2
+          //将nextr位置置为0
+},
+getNextInCol:function(r,c){
+    //nextr从r+1开始，到<RN结束
+      //如果nextr位置不等于0
+        //返回nextr位置
+    //(遍历结束)
+    //返回-1
+},
+moveDown:function(){
+    //调用move:传入匿名函数:
+      //遍历data中每一列
+        //调用moveDownInCol下移第c列
+    //并为匿名函数提前绑定this
+},
+moveDownInCol:function(c){
+    //r从RN-1开始，反向遍历每一行,到r>0结束
+      //查找r位置上方前一个不为0的位置prevr
+      //如果没找到,就退出循环
+      //否则  
+        //如果r位置的值为0
+          //将prevr位置的值赋值给r位置
+          //将prevr位置置为0
+          //r留在原地
+        //否则，如果r位置的值等于prevr位置的值
+          //将r位置的值*2
+          //将prevr位置置为0
+},
+getPrevInCol:function(r,c){
+    //prevr从r-1开始，反向遍历每一行，到>=0结束
+      //如果prevr位置不等于0
+        //返回prevr位置
+    //(遍历结束)
+    //返回-1
+},

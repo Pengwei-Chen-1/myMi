@@ -1,0 +1,31 @@
+moveLeft:function(){//左移所有行
+    //为data拍照保存在before
+    //遍历data中每一行
+      //调用moveLeftInRow左移第r行
+    //(遍历后)
+    //为data拍照保存在after
+    //如果before!=after
+      //调用randomNum随机生成一个数
+      //更新页面
+},
+moveLeftInRow:function(r){//左移第r行
+    //遍历data中r行每个元素，到<CN-1结束
+      //调用getNextInRow方法，查找下一个不为0的位置，保存在nextc中
+      //如果nextc等于-1，就退出循环
+      //否则
+        //如果c位置的值为0
+          //将nextc位置的值替换c位置的值
+          //将nextc位置的值置为0
+          //c留在原地
+        //否则，如果c位置的值等于nextc位置的值
+          //将c位置的值*2
+          //将nextc位置的值置为0
+},
+//查找r行c列右侧下一个不为0的位置
+getNextInRow:function(r,c){
+    //nextc从c+1开始，遍历data中r行的每个元素,到<CN结束
+      //如果nextc位置的值不为0
+        //返回nextc
+    //(遍历结束)
+    //返回-1
+}

@@ -1,0 +1,119 @@
+$('#header').load('header.php',function(){
+	$('#welcome').html('欢迎回来: '+loginName);
+});
+$('#footer').load('footer.php');
+	
+var s = location.search;    //查询地址栏中字符串内容
+var loginName = s.substring(s.indexOf('=')+1);
+
+//alert(loginName);
+//console.log($('#welcome'));
+//$('#welcome').html('欢迎回来: '+loginName);
+
+
+$.getJSON('data/cart_detail.php',{'uname':loginName},function(arr){
+	//console.log(arr);
+	var html="";
+	$.each(arr,function(i,p){
+		html += `
+			<tr>
+                    <td>
+                        <input type="checkbox"/>
+                        <input type="hidden" value="${p.did}"/>
+                        <div><img src="${p.pic}" alt=""/></div>
+                    </td>
+                    <td><a href="">${p.pname}</a></td>
+                    <td>${p.price}</td>
+                    <td>
+                        <button class="minus" data-did="${p.did}">-</button><input type="text" value="${p.count}"/><button class="plus" data-did="${p.did}">+</button>
+                    </td>
+                    <td><span>${p.price*p.count}</span></td>
+                    <td><a href="${p.did}" class="cart_del">删除</a></td>
+                </tr>	
+		`;
+	});
+	//console.log(html);
+	$('#cart tbody').html(html);
+});
+/*
+$('#cart').on('click','.plus',function(){
+	var count = $(this).prev().val();
+	count++;
+	$(this).prev().val(count);
+	var did = $(this).data('did');
+	var price = $(this).parent().prev().html();
+
+	$.post('data/cart_update.php',{'count':count,'did':did},function(txt){
+		//console.log('服务器返回的修改结果 : '+txt);
+	});
+	$(this).parent().next().children('span').html(count*price);
+});
+
+$('#cart').on('click','.minus',function(){
+	var count = $(this).next().val();
+	if(count>0){
+		count--;
+	}
+	//console.log(count);
+	$(this).next().val(count);
+	var did = $(this).data('did');
+	var price = $(this).parent().prev().html();
+
+	$.post('data/cart_update.php',{'count':count,'did':did},function(txt){
+		//console.log('服务器返回的修改结果 : '+txt);
+	});
+	var s = $(this).parent().next().children('span');
+	s.html(count*price);
+	$('cart_footer span').html()
+});
+*/
+
+//购物车价格改变公共方法，当点击+或-按钮以及输入框的值的时候，单行小计和总金额要根据点击按钮和输入值进行改变
+
+$('#cart').on('click','.plus',function(){changePrice(1,this)});
+$('#cart').on('click','.minus',function(){changePrice(0,this)});
+//$('#cart').on('change',':checkbox',function(){changePrice(0,this)});
+
+//btnChange 表示出入的+ 或— 号.
+function changePrice(btnChange,btn){
+	var did = $(btn).data('did');
+	var price = $(btn).parent().prev().html();
+	var count;
+	if(btnChange==1){
+		count = $(btn).prev().val();
+		count++;
+		$(btn).prev().val(count);
+	}else {
+		count = $(btn).next().val();
+		if(count>0){	
+			count--;
+		}
+		$(btn).next().val(count);
+	}
+	$.post('data/cart_update.php',{'count':count,'did':did},function(txt){
+		//console.log('服务器返回的修改结果 : '+txt);
+	});
+	$(btn).parent().next().children('span').html(count*price);
+//总的结算运算
+	var spanList = $('#cart tbody').find('span');
+	//console.log(spanList);
+	var html = 0;
+	//console.log(html);
+	$.each(spanList,function(i,spanHtml){
+		//console.log(spanHtml);
+		html += parseFloat($(spanHtml).html());
+		console.log(html);
+	})
+	$('#cart_footer span').html(html);
+}
+
+$('#cart tbody').on('click','.cart_del',function(e){
+	e.preventDefault();
+	var did = $(this).attr('href');
+	$.get('data/cart_delete.php',{'did':did},function(txt){
+		//console.log(this);
+		$(this).parent().parent().remove();
+	}.bind(this));
+});
+
+
